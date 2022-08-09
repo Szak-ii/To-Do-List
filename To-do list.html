@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<h1>To-do List</h1>
+<div id="add-div">
+<input type="text" class="input" id="input-task">
+<span class="spacer"></span>
+<button id="add-task-button">Add Task</button>
+</div>
+
+<div id="task-div">
+<ul id="task-list">
+<li>
+
+        <input type="checkbox" class="check" onclick="checkTask(this)">
+    <span class="task">Complete Monthly reports and topics</span>
+    <button onclick= "delTask(this)" class="delete-btn"></button>
+</li>
+ <li>
+
+         <input type="checkbox" class="check" onclick="checkTask(this)">
+     <span class="task">Formulate a financial plan</span>
+     <button onclick="delTask(this)" class="delete-btn"></button>
+ </li>
+ <li>
+
+         <input type="checkbox" class="check" onclick="checkTask(this)">
+     <span class="task">Draw up prototypes and planning</span>
+     <button onclick="delTask(this)" class="delete-btn"></button>
+ </li>
+</ul>
+</div>
+<script>
+    let taskList = document.getElementById("task-list");
+    let taskInput = document.getElementById("input-task");
+    let addBtn = document.getElementById("add-task-button");
+
+    addBtn.addEventListener("click", function () {
+        let newCheckbox = document.createElement("input");
+        newCheckbox.setAttribute("type", "checkbox");
+        newCheckbox.classList.add("check");
+        newCheckbox.setAttribute("onclick", "checkTask(this)");
+
+        let newTask = document.createElement("span");
+        newTask.classList.add("task");
+        newTask.textContent = taskInput.value;
+
+        let newDel = document.createElement("button");
+        newDel.setAttribute("type", "submit");
+        newDel.classList.add("delete-btn");
+        newDel.setAttribute("onclick", "delTask(this)");
+
+        let newItem = document.createElement("li");
+        newItem.appendChild(newCheckbox);
+        newItem.appendChild(newTask);
+        newItem.appendChild(newDel);
+
+        taskList.appendChild(newItem);
+        taskInput.value = "";
+
+        updateStoredTask();
+    })
+
+    function delTask(e) {
+        let parent = e.parentNode;
+        taskList.removeChild(parent);
+        updateStoredTask()
+    }
+    function checkTask(e) {
+        let task = e.parentNode.querySelector("span");
+        task.classList.toggle("strike-task");
+        updateStoredTask()
+    }
+
+    function getStoredTask() {
+        return localStorage.getItem("tasks") || [];
+    }
+
+    function updateStoredTask() {
+        let storedTask = taskList.innerHTML;
+        localStorage.setItem("tasks", storedTask);
+    }
+
+    window.onload =function () {
+        if (getStoredTask()) {
+            taskList.innerHTML = getStoredTask();
+        }
+    }
+</script>
+</body>
+</html>
