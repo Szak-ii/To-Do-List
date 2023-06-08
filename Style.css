@@ -1,0 +1,107 @@
+body {
+    background-image: url("Images/Avocado.jpg");
+    background-position: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #faf4f4;
+    font-family: 'Sigmar', cursive;
+}
+
+#add-div {
+    
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.input {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+
+.spacer {
+    width: 10px;
+}
+
+#add-task-button {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #3d5425;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.check::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid  #fff;
+    background-color: #fff; 
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+  
+  .check:checked::before {
+    background-color: #3d5425 ; 
+    border-color:  #fff; 
+  }
+
+  .check {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+  }
+
+.task {
+    flex: 1;
+    font-size: 16px;
+    color: #8aa576;
+    font-family: 'Sanchez', serif;
+}
+
+.strike-task {
+    text-decoration: line-through;
+    color: rgb(212, 94, 94);
+}
+
+.delete-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 5;
+    position: relative;
+}
+
+.delete-btn::before {
+    content: url(/images/cross.png);
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
